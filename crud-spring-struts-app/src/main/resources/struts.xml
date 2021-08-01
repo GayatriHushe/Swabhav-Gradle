@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+  "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+  "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="main" extends="struts-default">
+
+		<action name="display" class="com.techlabs.actions.DisplayAction">
+			<result name="success">
+				views/display.jsp
+			</result>
+		</action>
+
+		<action name="addStudent"
+			class="com.techlabs.actions.AddAction">
+			<result name="success">
+				/views/add.jsp
+			</result>
+		</action>
+
+		<action name="doaddStudent"
+			class="com.techlabs.actions.AddAction" method="addStudent">
+			<result name="success" type="redirect">
+				display
+			</result>
+			<result name="error">
+				/views/add.jsp
+			</result>
+		</action>
+
+		<action name="editStudent"
+			class="com.techlabs.actions.EditAction" method="EditStudent">
+			<result name="success">
+				/views/edit.jsp
+			</result>
+		</action>
+
+		<action name="doUpdateStudent"
+			class="com.techlabs.actions.EditAction" method="doEditStudent">
+			<result name="success" type="redirect">
+				display
+			</result>
+			<result name="error">
+				/views/edit.jsp
+			</result>
+		</action>
+		
+		<action name="updateStudent"
+			class="com.techlabs.actions.EditAction">
+			<result name="success">
+				/views/edit.jsp
+			</result>
+		</action>
+
+		<action name="deleteStudent"
+			class="com.techlabs.actions.DeleteAction">
+			<result name="success" type="redirect">
+				display
+			</result>
+		</action>
+
+	</package>
+</struts>
