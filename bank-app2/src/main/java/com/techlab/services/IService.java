@@ -14,4 +14,5 @@ public interface IService {
 	public void updateBankMasterOnDeposit(BankMaster bankMaster);
 	public void updateBankMasterOnWithdraw(BankMaster bankMaster);
 	public double getBalance(String name) ;
+	public double getAccountBalance(String name) throws SQLException ;
 }

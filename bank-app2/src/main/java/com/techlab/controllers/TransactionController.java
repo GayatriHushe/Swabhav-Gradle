@@ -39,11 +39,20 @@ public class TransactionController extends HttpServlet {
 		service = new CustomerService();
 		if(type.equals("D")) {
 			service.insertBankTransaction(new BankTransaction(name,amount,type));
-			service.updateBankMasterOnDeposit(new BankMaster(name,amount));	}
+			service.updateBankMasterOnDeposit(new BankMaster(name,amount));	
+		}
 		else {
 			service.insertBankTransaction(new BankTransaction(name,amount,type));
 			service.updateBankMasterOnWithdraw(new BankMaster(name,amount));
 		}
+		try {
+			System.out.println("setBalance");
+			session.setAttribute("accountBalance", service.getAccountBalance(name)); //this is giving me bal after first login
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("bal from transaction : "+session.getAttribute("accountBalance"));
 		response.sendRedirect("home.jsp");
 		
 		

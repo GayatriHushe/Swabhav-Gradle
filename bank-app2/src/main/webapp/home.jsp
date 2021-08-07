@@ -1,3 +1,5 @@
+<%@page import="com.techlab.services.CustomerService"%>
+<%@page import="com.techlab.services.IService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -21,18 +23,39 @@
       <li><a href="passbook" <%session.setAttribute("operation", "passbook");%>>PassBook</a></li>
       <li><a href="transaction" <%session.setAttribute("operation", "transaction");%>>Transaction</a></li>
       <% 
+        
       	String customer=(String)session.getAttribute("CustomerName");
       	if(customer==null)
-      		out.println("<li><a href='login' >Login</a></li>");
+      	{
+      		 %>
+      		<li><a href='login' <%session.setAttribute("operation", "home");%>>Login</a></li>
+      		<%
+      	}
       	else
-      		out.println("<li><a href='logout'>Logout</a></li>");
+      	{
+      		 %>
+      		<li><a href='logout' <%session.setAttribute("operation", "home");%>>Logout</a></li>
+      		<%
+      	}
       %>
     </ul>
+   
+    
     
   </div>
 </nav>
 <h1 align="center">Welcome to Home Page</h1>
 
-
+ <%
+    String name=(String)session.getAttribute("accountHolderName");
+    IService service=new CustomerService();
+    
+    
+      if(session.getAttribute("accountHolderName")!=null){     
+      %>
+      <h3>Account Holder Name : <%=name %></h3>
+      <h3>Account Balance : <%=session.getAttribute("accountBalance") %></h3>
+      <% }
+    %>
 </body>
 </html>

@@ -31,7 +31,7 @@ public class LoginController extends HttpServlet {
 
 		String name =request.getParameter("customerName");
 		String password =request.getParameter("customerPassword");
-
+		
 		Customer customer=new Customer(name, password);
 		System.out.println(customer);
 		session.setAttribute("Customer", customer);
@@ -42,6 +42,9 @@ public class LoginController extends HttpServlet {
 			if(isValidCustomer)
 			{
 				System.out.println(customer+" is a valid customer");
+				session.setAttribute("accountHolderName", name);
+				double accountBal=customerRepository.getAccountBalance(name);
+				session.setAttribute("accountBalance", accountBal);//first time set
 				Object op = session.getAttribute("operation");
 				if (op != null)
 				{

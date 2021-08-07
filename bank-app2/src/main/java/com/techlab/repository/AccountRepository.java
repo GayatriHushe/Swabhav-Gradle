@@ -88,7 +88,7 @@ public class AccountRepository {
 			System.out.println("Displaying transactions : ");
 			BankTransaction transaction;
 			while (rs.next()) {
-				transaction = new BankTransaction(rs.getString("NAME"),rs.getInt("AMOUNT"),rs.getString("TYPE"));
+				transaction = new BankTransaction(rs.getString("NAME"),rs.getInt("AMOUNT"),rs.getString("TYPE"),rs.getString("TR_DATE"));
 				transactions.add(transaction);
 			}
 			System.out.println(transactions);
@@ -156,5 +156,17 @@ public class AccountRepository {
 		}
 		return 0;
 		
+	}
+	
+public double getAccountBalance(String name) throws SQLException {
+		double accountBalance = 0;
+		PreparedStatement ps=(PreparedStatement) con.prepareStatement("SELECT BALANCE FROM BANK_MASTER WHERE NAME=?;");
+		ps.setString(1, name);
+		ResultSet rs=ps.executeQuery();
+		while(rs.next())
+			accountBalance=rs.getDouble(1);
+		System.out.println("Account Balance : "+accountBalance); 
+
+		return accountBalance;
 	}
 }

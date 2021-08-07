@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+  "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+  "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="main" extends="struts-default">
+
+		<action name="home" class="com.techlab.action.HomeAction">
+			<result name="success">
+				/views/home.jsp
+			</result>
+		</action>
+
+		<action name="logout" class="com.techlab.action.HomeAction"
+			method="logout">
+			<result name="success">
+				/views/home.jsp
+			</result>
+		</action>
+
+		<action name="registerForm">
+			<result>
+				/views/register.jsp
+			</result>
+
+		</action>
+		<action name="add" class="com.techlab.action.RegisterAction"
+			method="add">
+			<result name="success" type="redirect">
+				home
+			</result>
+		</action>
+
+		<action name="loginForm">
+			<result>
+				/views/login.jsp
+			</result>
+		</action>
+
+		<action name="addd" class="com.techlab.action.LoginAction"
+			method="addd">
+			<result name="success" type="redirect">
+				home
+			</result>
+			<result name="error" type="redirect">
+				loginForm
+			</result>
+		</action>
+
+		<action name="transaction"
+			class="com.techlab.action.TransactionAction">
+			<result name="success" type="redirect">
+				/views/transaction.jsp
+			</result>
+			<result name="error" type="redirect">
+				loginForm
+			</result>
+		</action>
+
+
+		<action name="doTransaction"
+			class="com.techlab.action.TransactionAction" method="doTransaction">
+			<result name="success" type="redirect">
+				home
+			</result>
+		</action>
+
+		<action name="passbook"
+			class="com.techlab.action.PassbookAction" method="add">
+			<result name="success" >
+				/views/passbook.jsp
+			</result>
+			<result name="error" type="redirect">
+				loginForm
+			</result>
+		</action>
+
+		<action name="doPassbook"
+			class="com.techlab.action.PassbookAction" method="add">
+			<result name="success">
+				/views/passbook.jsp
+			</result>
+		</action>
+
+	</package>
+</struts>
+
+
